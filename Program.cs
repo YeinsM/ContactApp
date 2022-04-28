@@ -9,24 +9,31 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionSql"))
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // app.UseSwagger();
+    // app.UseSwaggerUI();
+    app.UseHsts();
 }
 
+// Configure the application to serve index.html from the folder /wwwroot  
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();  
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
+
+app.MapFallbackToFile("index.html"); ;
 
 app.Run();
