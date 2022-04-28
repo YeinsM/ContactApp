@@ -1,11 +1,4 @@
-using ContactBackEnd.Data;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
-
-// Add connection with SQL server with ConnectionString in Appsettings.json
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionSql")));
 
 // Add services to the container.
 
