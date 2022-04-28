@@ -22,7 +22,7 @@ namespace ContactBackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Contact>>> GetAll()
         {
-            return Ok(await _context.Contacts.ToListAsync());
+            return await _context.Contacts.ToListAsync();
         }
 
         // GET api/<ContactsController>/5
