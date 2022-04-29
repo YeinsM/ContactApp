@@ -30,9 +30,6 @@ namespace ContactBackEnd.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"), 1L, 1);
 
-                    b.Property<DateTime>("BirthDay")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -40,18 +37,54 @@ namespace ContactBackEnd.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("ContactId");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
+                });
+
+            modelBuilder.Entity("ContactBackEnd.Data.Entities.Phone", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("ContactId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactId");
+
+                    b.ToTable("Phones", (string)null);
+                });
+
+            modelBuilder.Entity("ContactBackEnd.Data.Entities.Phone", b =>
+                {
+                    b.HasOne("ContactBackEnd.Data.Entities.Contact", "Contact")
+                        .WithMany("Phones")
+                        .HasForeignKey("ContactId");
+
+                    b.Navigation("Contact");
+                });
+
+            modelBuilder.Entity("ContactBackEnd.Data.Entities.Contact", b =>
+                {
+                    b.Navigation("Phones");
                 });
 #pragma warning restore 612, 618
         }

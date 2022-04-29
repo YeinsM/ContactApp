@@ -3,13 +3,19 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddMvc();
+
 // Add connection with SQL server with ConnectionString in Appsettings.json
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionSql")));
 
-// Add services to the container.
+builder.Services.AddCors(options => options.AddPolicy("AllowWebApp",
+    builder => builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()));
 
-builder.Services.AddControllersWithViews();
+// Add services to the container.
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -21,19 +27,24 @@ if (app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// Configure the application to serve index.html from the folder /wwwroot  
+//Create cors directive
+app.UseCors("AllowWebApp");
+
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
-app.UseRouting();  
+app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+app.UseEndpoints(cfg =>
+{
+    cfg.MapControllerRoute(
+    "Default", "/{controller}/{action=Index}/{id?}",
+    new { controller = "App", action = "Index" });
+});
 
-app.MapFallbackToFile("index.html"); ;
 
 app.Run();

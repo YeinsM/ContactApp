@@ -22,7 +22,7 @@ namespace ContactBackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Contact>>> GetAll()
         {
-            return await _context.Contacts.ToListAsync();
+            return Ok(await _context.Contacts.ToListAsync());
         }
 
         // GET api/<ContactsController>/5
@@ -39,10 +39,16 @@ namespace ContactBackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<Contact>> Post([FromBody] Contact contact)
         {
-            _context.Contacts.Add(contact);
-            await _context.SaveChangesAsync();
-            //return Ok();
-            return CreatedAtAction(nameof(GetById), new { id = contact.ContactId }, contact);
+            if (ModelState.IsValid)
+            {
+                _context.Contacts.Add(contact);
+                await _context.SaveChangesAsync();
+                //return Ok();
+                return CreatedAtAction(nameof(GetById), new { id = contact.ContactId }, contact);
+            }
+            else{
+                return null;
+            }
         }
 
         // PUT api/<ContactsController>/5
@@ -57,9 +63,9 @@ namespace ContactBackEnd.Controllers
                 else
                 {
                     contactToUpdate.Name = contact.Name;
-                    contactToUpdate.BirthDay = contact.BirthDay;
+                    contactToUpdate.LastName = contact.LastName;
                     contactToUpdate.Email = contact.Email;
-                    contactToUpdate.PhoneNumber = contact.PhoneNumber;
+                    contactToUpdate.Phones = contact.Phones;
 
                     await _context.SaveChangesAsync();
 
@@ -79,7 +85,7 @@ namespace ContactBackEnd.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var contact = await _context.Contacts.FindAsync(id);
-            if(contact == null)
+            if (contact == null)
                 return NotFound();
 
             _context.Contacts.Remove(contact);
