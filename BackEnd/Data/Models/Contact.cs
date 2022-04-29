@@ -18,7 +18,8 @@ namespace ContactBackEnd.Data.Entities
         [Required(ErrorMessage = "The email is required")]
         [EmailAddress]
         public string Email { get; set; }
-        public string Phones { get; set; }
+
+        public string Phone { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Creation Date")]

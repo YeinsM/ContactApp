@@ -65,7 +65,7 @@ namespace ContactBackEnd.Controllers
                     contactToUpdate.Name = contact.Name;
                     contactToUpdate.LastName = contact.LastName;
                     contactToUpdate.Email = contact.Email;
-                    contactToUpdate.Phones = contact.Phones;
+                    contactToUpdate.Phone = contact.Phone;
 
                     await _context.SaveChangesAsync();
 
@@ -91,7 +91,7 @@ namespace ContactBackEnd.Controllers
             _context.Contacts.Remove(contact);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
     }
 }
