@@ -27,7 +27,7 @@ export class GetComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.contactService.delete(id)
-        Swal.fire('Successfully removed!', '', 'success').then(caca =>
+        Swal.fire('Successfully removed!', '', 'success').then(trash =>
           this.getAll()
         );
       };

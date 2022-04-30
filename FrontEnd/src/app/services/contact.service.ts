@@ -32,7 +32,7 @@ export class ContactService {
     return contacts ? JSON.parse(contacts) : [];
   }
 
-  private isPepe = true;
+  private newId = true;
 
   getJson = (): ContactModel[] => contacts
 
@@ -49,12 +49,12 @@ export class ContactService {
 
   getAll(): ContactModel[] {
     let contacts = this.getContactStorage();
-    if (this.isPepe && !contacts.length) {
+    if (this.newId && !contacts.length) {
       contacts = this.getJson();
       this.updateContactStorage(contacts);
       this.updateStorage((contacts.length + 1).toString(), NEXTID)
 
-      this.isPepe = false
+      this.newId = false
     }
     return contacts;
   }
