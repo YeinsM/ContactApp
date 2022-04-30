@@ -1,0 +1,32 @@
+[
+    {
+        "contactId":"1",
+        "name": "Nicole",
+        "lastName": "Batista",
+        "email": "cualquiera@gmail.com"
+    },
+    {
+        "contactId":"2",
+        "name": "Yeins",
+        "lastName": "Mancera",
+        "email": "tercero@gmail.com"
+    },
+    {
+        "contactId":"3",
+        "name": "Camilo",
+        "lastName": "Acevedo",
+        "email": "cuarto@gmail.com"
+    },
+    {
+        "contactId":"4",
+        "name": "Luisa",
+        "lastName": "Mejia",
+        "email": "quinto@gmail.com"
+    },
+    {
+        "contactId":"5",
+        "name": "Daniel",
+        "lastName": "Cabrera",
+        "email": "sexto@gmail.com"
+    }
+]

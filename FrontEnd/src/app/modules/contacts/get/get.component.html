@@ -1,0 +1,27 @@
+<div class="container">
+  <br />
+  <a routerLink="/contacts/create" class="btn">New Contact</a>
+
+  <table class="table responsive">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let contact of contactList">
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.lastName }}</td>
+        <td>{{ contact.email }}</td>
+        <td>
+          <a routerLink="/contacts/edit/{{ contact.contactId }}" class="btn">Edit</a>
+          <button class="btn red" (click)="delete(contact.contactId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
