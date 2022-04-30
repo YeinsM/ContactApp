@@ -22,6 +22,7 @@ export class EditComponent implements OnInit {
     contactId: [0, [Validators.required]],
     name: ['', [Validators.required, Validators.minLength(3)]],
     lastName: ['', [Validators.required, Validators.minLength(3)]],
+    phone: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
   });
 
@@ -32,6 +33,7 @@ export class EditComponent implements OnInit {
       this.fgValidation.controls['contactId'].setValue(id);
       this.fgValidation.controls['name'].setValue(data?.name);
       this.fgValidation.controls['lastName'].setValue(data?.lastName);
+      this.fgValidation.controls['phone'].setValue(data?.phone);
       this.fgValidation.controls['email'].setValue(data?.email);
   }
 
@@ -40,6 +42,7 @@ export class EditComponent implements OnInit {
     contact.contactId = this.fgValidation.controls['contactId'].value;
     contact.name = this.fgValidation.controls['name'].value;
     contact.lastName = this.fgValidation.controls['lastName'].value;
+    contact.phone = this.fgValidation.controls['phone'].value;
     contact.email = this.fgValidation.controls['email'].value;
     try {
       this.contactService.update(contact)

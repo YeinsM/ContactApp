@@ -3,4 +3,5 @@ export class ContactModel{
     name?: String;
     lastName?: String;
     email?: String;
+    phone?: String;
 }

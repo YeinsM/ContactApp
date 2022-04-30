@@ -3,30 +3,35 @@
         "contactId":"1",
         "name": "Nicole",
         "lastName": "Batista",
+        "phone":"0000000001",
         "email": "cualquiera@gmail.com"
     },
     {
         "contactId":"2",
         "name": "Yeins",
         "lastName": "Mancera",
+        "phone":"0000000001",
         "email": "tercero@gmail.com"
     },
     {
         "contactId":"3",
         "name": "Camilo",
         "lastName": "Acevedo",
+        "phone":"0000000001",
         "email": "cuarto@gmail.com"
     },
     {
         "contactId":"4",
         "name": "Luisa",
         "lastName": "Mejia",
+        "phone":"0000000001",
         "email": "quinto@gmail.com"
     },
     {
         "contactId":"5",
         "name": "Daniel",
         "lastName": "Cabrera",
+        "phone":"0000000001",
         "email": "sexto@gmail.com"
     }
 ]
