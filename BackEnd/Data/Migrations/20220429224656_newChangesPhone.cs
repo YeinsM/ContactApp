@@ -4,13 +4,14 @@
 
 namespace ContactBackEnd.Data.Migrations
 {
-    public partial class fixContactEntity : Migration
+    public partial class newChangesPhone : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Phones",
-                table: "Contacts");
+            migrationBuilder.RenameColumn(
+                name: "PhoneNumber",
+                table: "Contacts",
+                newName: "Phone");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
@@ -21,19 +22,14 @@ namespace ContactBackEnd.Data.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "Phone",
-                table: "Contacts",
-                type: "nvarchar(max)",
-                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Phones",
-                table: "Contacts");
+            migrationBuilder.RenameColumn(
+                name: "Phone",
+                table: "Contacts",
+                newName: "PhoneNumber");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
@@ -42,13 +38,6 @@ namespace ContactBackEnd.Data.Migrations
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
-
-            migrationBuilder.AddColumn<string>(
-                name: "Phone",
-                table: "Contacts",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
         }
     }
 }

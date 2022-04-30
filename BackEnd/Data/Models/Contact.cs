@@ -19,8 +19,6 @@ namespace ContactBackEnd.Data.Entities
         [EmailAddress]
         public string Email { get; set; }
 
-        public string Phone { get; set; }
-
         [DataType(DataType.Date)]
         [Display(Name = "Creation Date")]
         public DateTime CreatedDate { get; set; } = DateTime.Now;

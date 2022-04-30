@@ -65,7 +65,6 @@ namespace ContactBackEnd.Controllers
                     contactToUpdate.Name = contact.Name;
                     contactToUpdate.LastName = contact.LastName;
                     contactToUpdate.Email = contact.Email;
-                    contactToUpdate.Phone = contact.Phone;
 
                     await _context.SaveChangesAsync();
 

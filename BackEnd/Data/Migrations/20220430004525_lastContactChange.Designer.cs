@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactBackEnd.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220429183156_fixContactEntity")]
-    partial class fixContactEntity
+    [Migration("20220430004525_lastContactChange")]
+    partial class lastContactChange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,9 +48,6 @@ namespace ContactBackEnd.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContactId");
 
